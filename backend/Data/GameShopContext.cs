@@ -6,6 +6,7 @@ using backend.Model.Auth;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using backend.Model;
+using backend.Data.SeedData;
 
 
 namespace backend.Data
@@ -28,11 +29,9 @@ namespace backend.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            
+            GameSeedData.Seed(modelBuilder);
 
-            modelBuilder.Entity<Game>()
-                .Property(g => g.Price)
-                .HasColumnType("decimal(18, 2)"); 
-                
         }
 
     }
