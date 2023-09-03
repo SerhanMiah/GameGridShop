@@ -21,7 +21,6 @@ namespace backend.Controllers
         }
 
         [HttpGet]
-        [Route("game")]
         public async Task<ActionResult<IEnumerable<Game>>> GetGames()
         {
             var games = await _context.Games 
