@@ -1,0 +1,16 @@
+<div class="hero-section">
+  <h1>Welcome to GameShop</h1>
+  <p>Your ultimate destination for the best video games.</p>
+</div>
+
+<div class="games-section">
+  <h2>Featured Games</h2>
+  <div class="games-list">
+      <div *ngFor="let game of games" class="game-card">
+          <img [src]="game.image" alt="{{ game.name }}">
+          <h3>{{ game.name }}</h3>
+          <p>{{ game.description }}</p>
+          <button class="buy-button">Buy Now</button>
+      </div>
+  </div>
+</div>

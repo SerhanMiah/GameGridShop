@@ -1,32 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\serha\\Documents\\build\\GameGridShop\\backend\\backend.csproj": {}
+    "/Users/serhanmiah/Documents/Build/GameGridShop/backend/backend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\serha\\Documents\\build\\GameGridShop\\backend\\backend.csproj": {
+    "/Users/serhanmiah/Documents/Build/GameGridShop/backend/backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\serha\\Documents\\build\\GameGridShop\\backend\\backend.csproj",
+        "projectUniqueName": "/Users/serhanmiah/Documents/Build/GameGridShop/backend/backend.csproj",
         "projectName": "backend",
-        "projectPath": "C:\\Users\\serha\\Documents\\build\\GameGridShop\\backend\\backend.csproj",
-        "packagesPath": "C:\\Users\\serha\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\serha\\Documents\\build\\GameGridShop\\backend\\obj\\",
+        "projectPath": "/Users/serhanmiah/Documents/Build/GameGridShop/backend/backend.csproj",
+        "packagesPath": "/Users/serhanmiah/.nuget/packages/",
+        "outputPath": "/Users/serhanmiah/Documents/Build/GameGridShop/backend/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\serha\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/serhanmiah/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\sdk\\7.0.306\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -54,6 +47,10 @@
               "version": "[7.0.10, )"
             },
             "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[7.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[7.0.10, )"
             },
@@ -103,7 +100,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/opt/homebrew/Cellar/dotnet/7.0.100/libexec/sdk/7.0.100/RuntimeIdentifierGraph.json"
         }
       }
     }
