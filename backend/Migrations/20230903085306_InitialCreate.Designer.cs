@@ -12,7 +12,7 @@ using backend.Data;
 namespace backend.Migrations
 {
     [DbContext(typeof(GameShopContext))]
-    [Migration("20230902204115_InitialCreate")]
+    [Migration("20230903085306_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -263,38 +263,72 @@ namespace backend.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GameId"));
 
                     b.Property<string>("CoverImageUrl")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
                     b.Property<string>("Developer")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("GameGenre")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("GameGenre")
-                        .HasColumnType("int");
+                    b.Property<string>("GamePlatform")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("GamePlatform")
-                        .HasColumnType("int");
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18, 2)");
 
                     b.Property<string>("Publisher")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
+                    b.Property<string>("WebsiteUrl")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
                     b.Property<string>("YoutubeTrailerId")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("GameId");
 
                     b.ToTable("Games");
+
+                    b.HasData(
+                        new
+                        {
+                            GameId = 1,
+                            CoverImageUrl = "https://example.com/witcher_3_cover.jpg",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Embark on a dark and epic journey as Geralt of Rivia, a monster hunter for hire, in a world filled with political intrigue, dangerous creatures, and captivating stories.",
+                            Developer = "CD Projekt Red",
+                            GameGenre = "RPG",
+                            GamePlatform = "PC",
+                            Price = 29.99m,
+                            Publisher = "CD Projekt",
+                            Title = "The Witcher 3: Wild Hunt",
+                            WebsiteUrl = "https://www.playstation.com/en-gb/games/the-witcher-3-wild-hunt/",
+                            YoutubeTrailerId = "https://www.youtube.com/watch?v=c0i88t0Kacs"
+                        });
                 });
 
             modelBuilder.Entity("backend.Model.GameImage", b =>
@@ -317,6 +351,20 @@ namespace backend.Migrations
                     b.HasIndex("GameId");
 
                     b.ToTable("GameImages");
+
+                    b.HasData(
+                        new
+                        {
+                            ImageId = 1,
+                            GameId = 1,
+                            ImageUrl = "https://example.com/witcher_3_image1.jpg"
+                        },
+                        new
+                        {
+                            ImageId = 2,
+                            GameId = 1,
+                            ImageUrl = "https://example.com/witcher_3_image2.jpg"
+                        });
                 });
 
             modelBuilder.Entity("backend.Model.Order", b =>
@@ -405,6 +453,54 @@ namespace backend.Migrations
                     b.HasIndex("GameId");
 
                     b.ToTable("Reviews");
+                });
+
+            modelBuilder.Entity("backend.Model.VideoGame.CartItem", b =>
+                {
+                    b.Property<int>("CartItemId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CartItemId"));
+
+                    b.Property<int>("GameId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ShoppingCartId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("UnitPrice")
+                        .HasColumnType("float");
+
+                    b.HasKey("CartItemId");
+
+                    b.HasIndex("GameId");
+
+                    b.HasIndex("ShoppingCartId");
+
+                    b.ToTable("CartItems");
+                });
+
+            modelBuilder.Entity("backend.Model.VideoGame.ShoppingCart", b =>
+                {
+                    b.Property<int>("ShoppingCartId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ShoppingCartId"));
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("ShoppingCartId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ShoppingCarts");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -508,8 +604,40 @@ namespace backend.Migrations
                     b.Navigation("Game");
                 });
 
+            modelBuilder.Entity("backend.Model.VideoGame.CartItem", b =>
+                {
+                    b.HasOne("backend.Model.Game", "Game")
+                        .WithMany("CartItems")
+                        .HasForeignKey("GameId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("backend.Model.VideoGame.ShoppingCart", "ShoppingCart")
+                        .WithMany("CartItems")
+                        .HasForeignKey("ShoppingCartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Game");
+
+                    b.Navigation("ShoppingCart");
+                });
+
+            modelBuilder.Entity("backend.Model.VideoGame.ShoppingCart", b =>
+                {
+                    b.HasOne("backend.Model.Auth.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("backend.Model.Game", b =>
                 {
+                    b.Navigation("CartItems");
+
                     b.Navigation("Images");
 
                     b.Navigation("Reviews");
@@ -518,6 +646,11 @@ namespace backend.Migrations
             modelBuilder.Entity("backend.Model.Order", b =>
                 {
                     b.Navigation("OrderItems");
+                });
+
+            modelBuilder.Entity("backend.Model.VideoGame.ShoppingCart", b =>
+                {
+                    b.Navigation("CartItems");
                 });
 #pragma warning restore 612, 618
         }

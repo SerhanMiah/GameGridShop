@@ -1,5 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using backend.Model.VideoGame;
 
 namespace backend.Model
 {
@@ -27,6 +30,55 @@ namespace backend.Model
         Mobile,
     }
 
+    public class Game
+    {
+        [Key]
+        public int GameId { get; set; }
+
+        [Required]
+        [MaxLength(200)]
+        public string Title { get; set; }
+
+        [Required]
+        [MaxLength(1000)]
+        public string Description { get; set; }
+
+        [Required]
+        [Column(TypeName = "decimal(18, 2)")]
+        public decimal Price { get; set; }
+
+        [Required]
+        public Genre GameGenre { get; set; }
+
+        [Required]
+        public Platform GamePlatform { get; set; }
+        [MaxLength(100)]
+        public string? Developer { get; set; }
+
+        [MaxLength(100)]
+        public string? Publisher { get; set; }
+
+        [MaxLength(500)]
+        public string? CoverImageUrl { get; set; }
+
+        [MaxLength(50)]
+        public string? YoutubeTrailerId { get; set; }
+
+        [MaxLength(100)]
+        public string? WebsiteUrl { get; set; }
+
+        // Audit fields
+        public DateTime CreatedDate { get; set; }
+        public DateTime? ModifiedDate { get; set; }
+
+        // Navigation properties
+        public virtual ICollection<GameImage> Images { get; set; }
+        public virtual ICollection<Review> Reviews { get; set; } // Assuming Review model exists in your codebase
+        public virtual ICollection<CartItem> CartItems { get; set; } // Assuming CartItem model exists in your codebase
+
+    }
+
+
     public class GameImage
     {
         [Key]
@@ -38,36 +90,5 @@ namespace backend.Model
         public int GameId { get; set; }
 
         public virtual Game Game { get; set; }
-    }
-
-    public class Game
-    {
-        [Key]
-        public int GameId {get; set;}
-
-        [Required]
-        [MaxLength(200)]
-        public string Title { get; set; }
-
-        [MaxLength(1000)]
-        public string? Description { get; set; }
-
-        public decimal Price { get; set; }
-
-        public Genre GameGenre { get; set; }
-
-        public Platform GamePlatform { get; set; }
-
-        public string? Developer { get; set; }
-
-        public string? Publisher { get; set; }
-
-        public string? CoverImageUrl { get; set; }
-
-        public string? YoutubeTrailerId { get; set; }
-
-        public virtual ICollection<GameImage> Images { get; set; }
-
-        public ICollection<Review>? Reviews { get; set; }
     }
 }

@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using backend.Model;
 using backend.Data.SeedData;
+using backend.Model.VideoGame;
 
 
 namespace backend.Data
@@ -26,11 +27,22 @@ namespace backend.Data
         public DbSet<Review> Reviews { get; set; }
         public DbSet<GameImage> GameImages { get; set; }
 
+        public DbSet<CartItem> CartItems { get; set; } 
+        public DbSet<ShoppingCart> ShoppingCarts { get; set; } 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             
             GameSeedData.Seed(modelBuilder);
+
+               modelBuilder.Entity<Game>()
+                .Property(g => g.GameGenre)
+                .HasConversion<string>();
+
+            modelBuilder.Entity<Game>()
+                .Property(g => g.GamePlatform)
+                .HasConversion<string>();
 
         }
 
