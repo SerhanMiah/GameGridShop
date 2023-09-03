@@ -1,28 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
-
+export class HomeComponent {
   games = [
     {
       name: 'Game 1',
-      description: 'This is a great game!',
-      image: 'path-to-image1.jpg'
+      image: 'path/to/game1-image.jpg',
+      description: 'Description of Game 1.'
     },
-    {
-      name: 'Game 2',
-      description: 'This is another great game!',
-      image: 'path-to-image2.jpg'
-    },
-    // ... add more games
+    // Add more game objects here
   ];
-
-  constructor() { }
-
-  ngOnInit(): void { }
-
 }

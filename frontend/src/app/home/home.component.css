@@ -1,43 +1,53 @@
+/* src/app/home/home.component.css */
+
 .hero-section {
-  background-color: #eee;
-  padding: 20px 0;
+  background-color: #121212;
+  color: #ffffff;
   text-align: center;
+  padding: 100px 0;
 }
 
 .games-section {
-  margin: 40px 0;
+  padding: 40px;
 }
 
 .games-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
 }
 
 .game-card {
-  border: 1px solid #ddd;
-  margin: 20px;
-  padding: 10px;
-  width: 200px;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s;
+  background-color: #f7f7f7;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.game-card:hover {
-  transform: scale(1.05);
+.game-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.game-details h3 {
+  margin-top: 10px;
 }
 
 .buy-button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px 20px;
+  background-color: #3498db;
+  color: #ffffff;
   border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
   cursor: pointer;
-  margin-top: 10px;
-  display: block;
-  width: 100%;
+  transition: background-color 0.3s ease;
 }
 
 .buy-button:hover {
-  background-color: #45a049;
+  background-color: #2980b9;
 }

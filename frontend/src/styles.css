@@ -2,3 +2,73 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+
+/* Reset default styles */
+body, h1, h2, h3, p {
+  margin: 0;
+  padding: 0;
+}
+
+/* Header and Navigation */
+header {
+  background-color: #333;
+  color: #fff;
+}
+
+.top-bar {
+  background-color: #ffcc00;
+  padding: 10px 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000;
+  text-decoration: none;
+}
+
+.menu {
+  list-style: none;
+  display: flex;
+}
+
+.menu li {
+  margin-right: 20px;
+}
+
+.menu a {
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.menu a:hover {
+  color: #555;
+}
+
+.user-actions {
+  margin-left: 20px;
+}
+
+.user-login,
+.user-register {
+  color: #000;
+  text-decoration: none;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.user-login:hover,
+.user-register:hover {
+  color: #555;
+}
