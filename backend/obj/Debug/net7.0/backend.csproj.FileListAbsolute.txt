@@ -81,3 +81,5 @@ C:\Users\serha\Documents\build\GameGridShop\backend\obj\Debug\net7.0\refint\back
 C:\Users\serha\Documents\build\GameGridShop\backend\obj\Debug\net7.0\backend.pdb
 C:\Users\serha\Documents\build\GameGridShop\backend\obj\Debug\net7.0\backend.genruntimeconfig.cache
 C:\Users\serha\Documents\build\GameGridShop\backend\obj\Debug\net7.0\ref\backend.dll
+C:\Users\serha\Documents\build\GameGridShop\backend\bin\Debug\net7.0\MySqlConnector.dll
+C:\Users\serha\Documents\build\GameGridShop\backend\bin\Debug\net7.0\Pomelo.EntityFrameworkCore.MySql.dll
