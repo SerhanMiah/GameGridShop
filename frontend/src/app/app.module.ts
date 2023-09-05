@@ -9,6 +9,8 @@ import { GamesComponent } from './games/games.component';
 import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { VideoGameListComponent } from './video-game-list/video-game-list.component';
+import { VideoGameDetailComponent } from './video-game-detail/video-game-detail.component';
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import { RegisterComponent } from './register/register.component';
     GamesComponent,
     ProfileComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    VideoGameListComponent,
+    VideoGameDetailComponent,
   ],
   imports: [
     BrowserModule,

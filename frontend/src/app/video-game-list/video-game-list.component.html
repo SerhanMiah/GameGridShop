@@ -1,0 +1,6 @@
+<h2>Video Game List</h2>
+<ul>
+  <li *ngFor="let game of games" (click)="onSelect(game)">
+    {{ game.name }}
+  </li>
+</ul>
