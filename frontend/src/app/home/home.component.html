@@ -1,11 +1,36 @@
 <!-- src/app/home/home.component.html -->
 
-<div class="hero-section">
-  <h1>Welcome to GameShop</h1>
-  <p>Your ultimate destination for the best video games.</p>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Link to your custom CSS file -->
+  <title>GameShop - Your Ultimate Destination for Video Games</title>
+</head>
+<body>
 
-<div class="games-section">
+<!-- <header class="header-section">
+  <nav>
+    <div class="logo">
+    </div>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Games</a></li>
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+</header> -->
+
+<section class="hero-section">
+  <div class="hero-content">
+    <h1>Welcome to GameShop</h1>
+    <p>Your ultimate destination for the best video games.</p>
+    <a href="#featured-games" class="explore-button">Explore Games</a>
+  </div>
+</section>
+
+<section id="featured-games" class="games-section">
   <h2>Featured Games</h2>
   <div class="games-list">
     <div class="game-card" *ngFor="let game of games">
@@ -19,4 +44,26 @@
       </div>
     </div>
   </div>
-</div>
+</section>
+
+<footer class="footer-section">
+  <div class="footer-content">
+    <div class="footer-logo">
+      <img src="footer-logo.png" alt="GameShop Logo">
+    </div>
+    <div class="footer-links">
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+      </ul>
+    </div>
+    <div class="social-links">
+      <a href="#"><img src="facebook-icon.png" alt="Facebook"></a>
+      <a href="#"><img src="twitter-icon.png" alt="Twitter"></a>
+      <a href="#"><img src="instagram-icon.png" alt="Instagram"></a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

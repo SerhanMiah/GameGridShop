@@ -1,0 +1,44 @@
+/* Your existing styles */
+
+/* Login Section */
+.login-container {
+    background-color: #f2f2f2;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .login-form {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .login-form h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-control {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    width: 100%;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    border: none;
+    width: 100%;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  
