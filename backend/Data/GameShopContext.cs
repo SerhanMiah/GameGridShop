@@ -30,7 +30,14 @@ namespace backend.Data
         public DbSet<CartItem> CartItems { get; set; } 
         public DbSet<ShoppingCart> ShoppingCarts { get; set; } 
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        public DbSet<GameTag> GameTags { get; set; } 
+        public DbSet<Tag> Tags { get; set; }
+        public DbSet<DLC> DLCs { get; set; }
+        public DbSet<Edition> Editions { get; set; }
+
+
+
+protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             
@@ -48,29 +55,25 @@ namespace backend.Data
                 .Property(g => g.Rating)
                 .HasConversion<string>();
 
-        // Many-to-many relationship between Game and Tag using GameTag
-        modelBuilder.Entity<GameTag>()
-            .HasKey(gt => new { gt.GameId, gt.TagId });
+            // Many-to-many relationship between Game and Tag using GameTag
+            modelBuilder.Entity<GameTag>()
+                .HasKey(gt => new { gt.GameId, gt.TagId });
 
-        modelBuilder.Entity<GameTag>()
-            .HasOne(gt => gt.Game)
-            .WithMany(g => g.GameTags)  // Change here
-            .HasForeignKey(gt => gt.GameId);
+            modelBuilder.Entity<GameTag>()
+                .HasOne(gt => gt.Game)
+                .WithMany(g => g.GameTags)  
+                .HasForeignKey(gt => gt.GameId);
 
-        modelBuilder.Entity<GameTag>()
-            .HasOne(gt => gt.Tag)
-            .WithMany(t => t.GameTags)  // Change here
-            .HasForeignKey(gt => gt.TagId);
+            modelBuilder.Entity<GameTag>()
+                .HasOne(gt => gt.Tag)
+                .WithMany(t => t.GameTags)
+                .HasForeignKey(gt => gt.TagId);
 
-
-
-        // Configure the one-to-many relationship between Game and Review
-        modelBuilder.Entity<Review>()
-            .HasOne(r => r.Game)
-            .WithMany() // Since there's no ICollection<Review> in Game
-            .HasForeignKey(r => r.GameId)
-            .OnDelete(DeleteBehavior.Cascade); // Or any other behavior you want on delete
-
+            // Configure the one-to-many relationship between Game and Review
+            modelBuilder.Entity<Review>()
+                .HasOne(r => r.Game)
+                .WithMany(g => g.Reviews)
+                .HasForeignKey(r => r.GameId); 
 
         }
 

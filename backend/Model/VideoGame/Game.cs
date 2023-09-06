@@ -110,6 +110,12 @@ namespace backend.Model
         // In your Game class
         public virtual ICollection<GameTag> GameTags { get; set; }
 
+        public ICollection<DLC> Dlcs { get; set; } 
+
+         public ICollection<Edition> Editions { get; set; } 
+
+
+
     }
 
 

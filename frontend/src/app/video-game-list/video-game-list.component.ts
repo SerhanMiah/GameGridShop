@@ -36,6 +36,7 @@ export class VideoGameListComponent implements OnInit {
             console.error('Data does not contain a valid $values array:', data);
             return;
         }
+        console.log(data)
 
         // Map the games from the $values property
         this.games = data.$values.map((gameData: {

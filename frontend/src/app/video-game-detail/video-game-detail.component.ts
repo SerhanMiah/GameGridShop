@@ -1,25 +1,83 @@
 import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
-interface Game {
-  id: number;
-  title: string;
+
+interface GameImage {
+  imageId: number;
+  imageUrl?: string;
+  gameId: number;
+}
+
+interface Edition {
+  editionId: number;
+  name: string;
+  price: number;
+  gameId: number;
+  DLCs?: DLC[];
+}
+
+interface DLC {
+  DLCId: number;
+  name: string;
   description: string;
   price: number;
-  coverImageUrl: string;
-  createdDate: string;  // Assuming a string representation of a date
-  developer: string;
-  gameGenre: number;   // The data you provided gives a number, but you might want to change this to a string or some enum based on your needs
+  releaseDate: string; // Assuming a string representation of a date
   gameId: number;
-  gamePlatform: number; // Similar to gameGenre, this might better be a string or enum based on your actual data set
-  images: {
-    $id: string;
-    $values: any[]; // This is an array, but you might want to further specify its type if you know the data structure of the images
-  };
-  publisher: string;
-  websiteUrl: string;
-  youtubeTrailerId: string;  // You might consider changing this to "youtubeTrailerUrl" if it's always going to be a URL
+}
+
+interface GameTag {
+  gameId: number;
+  tagId: number;
+}
+
+enum Genre {
+  Action,
+  Adventure,
+  RPG,
+  // ... (other enum values)
+  GrandStrategy,
+  HackAndSlash
+}
+
+enum Platform {
+  PC,
+  PS4,
+  PS5,
+  XboxOne,
+  XboxSeriesX,
+  Switch,
+  Mobile
+}
+
+enum GameRating {
+  E,
+  Mature,
+  Age15Plus,
+  Age12Plus
+}
+
+interface Game {
+  gameId: number;
+  title?: string;
+  description?: string;
+  price: number;
+  gameGenre: Genre;
+  gamePlatform: Platform;
+  developer?: string;
+  publisher?: string;
+  coverImageUrl?: string;
+  youtubeTrailerId?: string;
+  websiteUrl?: string;
+  createdDate: string;
+  modifiedDate?: string;  // Assuming a string representation of a date
+  images?: GameImage[];
+  rating: GameRating;
+  gameTags: GameTag[];
+  editions: Edition[];
+  dlcs: DLC[];
+  // ... (other properties if needed, like reviews, cart items, etc.)
 }
 
 
@@ -30,46 +88,44 @@ interface Game {
 })
 export class VideoGameDetailComponent implements OnInit {
   selectedGame: Game | undefined;
+  errorMessage: string | undefined;
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router  // Imported Router but not used in the code below, you can remove if not needed
+    private sanitizer: DomSanitizer,
+    private router: Router 
   ) { }
-
   async ngOnInit(): Promise<void> {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id === null) {
-      console.error('No game ID provided in route.');
-      return;
-    }
-    const gameId = +id;
-    
-    try {
-      const { data } = await axios.get(`http://localhost:5052/api/Game/${gameId}`);
-      console.log(data)
-      if (data) {
-        this.selectedGame = {
-          id: data.gameId,
-          title: data.title,
-          description: data.description,
-          price: data.price,
-          coverImageUrl: data.coverImageUrl,
-          createdDate: data.createdDate,
-          developer: data.developer,
-          gameGenre: data.gameGenre,
-          gameId: data.gameId,
-          gamePlatform: data.gamePlatform,
-          images: data.images,
-          publisher: data.publisher,
-          websiteUrl: data.websiteUrl,
-          youtubeTrailerId: data.youtubeTrailerId
-        };
-        
-      } else {
-        console.error('No game data found for ID:', gameId);
+      const id = this.route.snapshot.paramMap.get('id');
+      if (id === null) {
+          console.error('No game ID provided in route.');
+          return;
       }
-    } catch (error) {
-      console.error('There was an error fetching the game:', error);
-    }
+      const gameId = +id;
+
+      try {
+          const { data } = await axios.get(`http://localhost:5052/api/Game/${gameId}`);
+          if (data) {
+              this.selectedGame = {
+                  ...data, 
+                  images: data.images.$values,  
+                  dlcs: data.dlcs.$values,
+                  editions: data.editions.$values,
+              };
+          }
+      } catch (error) {
+          console.error('There was an error fetching the game:', error);
+          this.handleError(error);
+      }
   }
+
+  private handleError(error: any) {
+    this.errorMessage = 'There was an issue fetching the game. Please try again later.';
+  }
+
+  getSafeUrl(videoId: string): SafeResourceUrl {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${videoId}`);
+}
+
+
 }
