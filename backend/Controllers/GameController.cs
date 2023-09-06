@@ -58,5 +58,15 @@ namespace backend.Controllers
 
             return BadRequest("Invalid genre provided");
         }
+
+        // GET: api/games/{gameId}/reviews
+        [HttpGet("{gameId}/reviews")]
+        public async Task<ActionResult<IEnumerable<Review>>> GetReviewsByGame(int gameId)
+        {
+            return await _context.Reviews.Where(r => r.GameId == gameId).ToListAsync();
+        }
+
+
+
     }
 }

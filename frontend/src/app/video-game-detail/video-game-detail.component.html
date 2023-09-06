@@ -1,4 +1,41 @@
-<div *ngIf="selectedGame">
-  <h2>{{ selectedGame.name }} Details</h2>
-  <!-- You can add more game details here, like image, description, price, etc. -->
+<div class="container mt-5" *ngIf="selectedGame">
+  <div class="card mb-5 shadow">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <!-- <img [src]="selectedGame.coverImageUrl" alt="{{ selectedGame.title }}" class="card-img-top img-fluid game-cover" 
+             (mouseenter)="showBackCover=true" 
+             (mouseleave)="showBackCover=false" 
+             [src]="showBackCover ? selectedGame.backCoverImageUrl : selectedGame.coverImageUrl"/> -->
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{ selectedGame.title }}</h5>
+          <p class="card-text">{{ selectedGame.description }}</p>
+          <hr>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><strong>Price:</strong> £{{ selectedGame.price }}</li>
+            <li class="list-group-item"><strong>Developer:</strong> {{ selectedGame.developer }}</li>
+            <li class="list-group-item"><strong>Publisher:</strong> {{ selectedGame.publisher }}</li>
+            <li class="list-group-item"><strong>Release Date:</strong> {{ selectedGame.createdDate | date:'mediumDate' }}</li>
+            <li class="list-group-item"><strong>Game Genre:</strong> {{ selectedGame.gameGenre }}</li>
+            <li class="list-group-item"><strong>Game Platform:</strong> {{ selectedGame.gamePlatform }}</li>
+          </ul>
+          <div class="mt-3">
+            <a [href]="selectedGame.websiteUrl" target="_blank" class="btn btn-primary">Official Website</a>
+            <a [href]="selectedGame.youtubeTrailerId" target="_blank" class="btn btn-secondary">Watch Trailer on YouTube</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Carousel for additional game images -->
+  <div *ngIf="selectedGame?.images && selectedGame.images.$values.length">
+    <h3>Game Images:</h3>
+    <carousel>
+        <slide *ngFor="let imageUrl of selectedGame.images.$values">
+            <img [src]="imageUrl" alt="Game Image" class="img-fluid rounded" />
+        </slide>
+    </carousel>
+  </div>
 </div>

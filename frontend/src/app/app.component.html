@@ -9,21 +9,20 @@
 </head>
 <body>
 
-<header>
-    <!-- Navigation bar component selector -->
-    <app-navigation-bar></app-navigation-bar>
-</header>
-
-<main class="main-container mt-4">
-    <app-video-game-list (gameSelected)="onGameSelected($event)"></app-video-game-list>
-    <router-outlet></router-outlet>
-</main>
-
-<footer class="bg-dark py-3 mt-4">
-    <div class="container text-center">
-        <p class="text-light mb-0">© 2023 GameShop. All rights reserved.</p>
-    </div>
-</footer>
+    <header>
+        <app-navigation-bar></app-navigation-bar>
+    </header>
+    
+    <main class="main-container mt-4">
+        <router-outlet></router-outlet>
+    </main>
+    
+    <footer class="bg-dark py-3 mt-4">
+        <div class="container text-center">
+            <p class="text-light mb-0">© 2023 GameShop. All rights reserved.</p>
+        </div>
+    </footer>
+    
 
 <!-- Bootstrap and FontAwesome JS for hamburger functionality -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
