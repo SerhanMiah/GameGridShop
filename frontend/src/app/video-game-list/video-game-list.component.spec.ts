@@ -1,23 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-@Component({
-  selector: 'app-video-game-list',
-  templateUrl: './video-game-list.component.html',
-  styleUrls: ['./video-game-list.component.css']
-})
-export class VideoGameListComponent implements OnInit {
-  games = [
-    { id: 1, name: 'Game 1' },
-    { id: 2, name: 'Game 2' },
-    // ... add more games
-  ];
+import { VideoGameListComponent } from './video-game-list.component';
 
-  constructor() { }
+describe('VideoGameListComponent', () => {
+  let component: VideoGameListComponent;
+  let fixture: ComponentFixture<VideoGameListComponent>;
 
-  ngOnInit(): void {
-  }
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [VideoGameListComponent]
+    });
+    fixture = TestBed.createComponent(VideoGameListComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
-  onSelect(game): void {
-    // Handle selection, maybe navigate to the detail page or set a selectedGame variable
-  }
-}
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

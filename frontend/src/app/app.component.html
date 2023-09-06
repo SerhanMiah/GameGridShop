@@ -10,44 +10,13 @@
 <body>
 
 <header>
-    <div class="top-bar bg-dark py-2">
-        <nav class="container d-flex justify-content-between align-items-center">
-            <a class="nav-logo text-light font-weight-bold" href="#" aria-label="GameShop Home">GameShop</a>
-            
-            <!-- Hamburger menu icon for mobile view -->
-            <button class="navbar-toggler d-block d-md-none" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            
-            <!-- Nav links for Desktop view -->
-            <ul class="nav-links d-none d-md-flex">
-                <li><a class="text-light" href="#">Video Games</a></li>
-                <li><a class="text-light" href="#">Consoles</a></li>
-                <li><a class="text-light" href="#">Accessories</a></li>
-                <li><a class="text-light" href="#">Deals</a></li>
-                <li><a class="text-light" href="#">Support</a></li>
-            </ul>
-            
-            <!-- Nav links for Mobile view -->
-            <div class="collapse navbar-collapse d-md-none" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="#">Video Games</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Consoles</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Accessories</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Deals</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Support</a></li>
-                </ul>
-            </div>
-
-            <div class="user-actions d-flex align-items-center">
-                <a class="user-login text-light mr-3" href="#"><i class="fas fa-sign-in-alt mr-1" aria-hidden="true"></i> Login</a>
-                <a class="user-register text-light" href="#"><i class="fas fa-user-plus mr-1" aria-hidden="true"></i> Register</a>
-            </div>
-        </nav>
-    </div>
+    <!-- Navigation bar component selector -->
+    <app-navigation-bar></app-navigation-bar>
 </header>
 
 <main class="main-container mt-4">
+    <app-video-game-list (gameSelected)="onGameSelected($event)"></app-video-game-list>
+    <app-video-game-detail [selectedGame]="selectedGame"></app-video-game-detail>
     <router-outlet></router-outlet>
 </main>
 
