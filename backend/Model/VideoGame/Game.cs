@@ -140,14 +140,13 @@ namespace backend.Model
         public decimal Price { get; set; }
         public int GameId { get; set; }
         public virtual Game Game { get; set; }
-
-        // Assuming an Edition can have multiple DLCs bundled with it
         public virtual ICollection<DLC> DLCs { get; set; }
     }
 
         public class DLC
     {
         [Key]
+  
         public int DLCId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
@@ -156,6 +155,19 @@ namespace backend.Model
         public DateTime ReleaseDate { get; set; }
         public int GameId { get; set; }
         public virtual Game Game { get; set; }
+
+        // Navigation property to DLC images
+        public virtual ICollection<DLCImage> DLCImages { get; set; }
+
+    }
+
+    public class DLCImage
+    {
+        [Key]
+        public int ImageId { get; set; }
+        public int DLCId { get; set; }
+        public virtual DLC DLC { get; set; }
+        public string ImageUrl { get; set; }
     }
 
     public class Rating
