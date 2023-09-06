@@ -1,59 +1,87 @@
 <div class="container mt-5" *ngIf="selectedGame">
-  <h1 class="game-title">{{ selectedGame.title }}</h1>
+  
+    <!-- Breadcrumbs -->
+    <nav aria-label="breadcrumb" class="breadcrumbs">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item"><a href="#">Video Games</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ selectedGame.title }}</li>
+      </ol>
+    </nav>
+  <!-- Cover Image Banner -->
+  <div class="cover-banner">
+    <img [src]="selectedGame.coverImageUrl" alt="{{ selectedGame.title }} game cover" class="img-fluid">
+  </div>
 
-  <section class="game-main-content">
-    <!-- Cover Image Section -->
-    <div class="cover-image-section" *ngIf="selectedGame.coverImageUrl">
-      <img [src]="selectedGame.coverImageUrl" alt="{{ selectedGame.title }} Cover Image" class="img-fluid">
+
+
+  <!-- Main Product Content -->
+  <div class="product-content row">
+    <div class="product-details col-md-12">
+      <h1 class="game-title">{{ selectedGame.title }}</h1>
+      <span class="rating">★★★★☆ | 1000+ ratings</span>
+      <div class="game-info">
+        <p><strong>Platform:</strong> PlayStation</p>
+        <p class="game-short-description">{{ selectedGame.description }}</p>
+        <h2 class="game-price">{{ gameData.price | currency:'USD' }}</h2>
+        <div class="action-buttons">
+          <button class="btn btn-primary btn-lg buy-btn mb-2">
+            <i class="fas fa-shopping-cart"></i> Add to Cart
+          </button>
+          <a [href]="selectedGame.websiteUrl" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">View on Official Website</a>
+        </div>
+        <p><strong>Developer:</strong> {{ selectedGame.developer }}</p>
+        <p><strong>Publisher:</strong> {{ selectedGame.publisher }}</p>
+      </div>
     </div>
+  </div>
 
-    <!-- Trailer Video Section -->
-    <div class="trailer-section my-4">
-      <h4>Game Trailer:</h4>
-      <!-- Uncomment once the safe URL is ready -->
-      <!-- <iframe width="560" height="315" [src]="getSafeUrl(selectedGame.youtubeTrailerId)" frameborder="0" allowfullscreen></iframe> -->
-    </div>
-
-    <!-- Game Details -->
-    <div class="game-details">
-      <h4>Game Details:</h4>
-      <p class="game-description">{{ selectedGame.description }}</p>
-      <ul class="list-group list-group-flush">
-          <li class="list-group-item">Price: {{ selectedGame.price | currency }}</li>
-          <li class="list-group-item">Genre: {{ selectedGame.gameGenre }}</li>
-          <li class="list-group-item">Platform: {{ selectedGame.gamePlatform }}</li>
-          <li class="list-group-item">Developer: {{ selectedGame.developer }}</li>
-          <li class="list-group-item">Publisher: {{ selectedGame.publisher }}</li>
-          <!-- ... (other details) -->
-      </ul>
-    </div>
-  </section>
-
-  <aside class="game-side-content">
-    <!-- Game Tags -->
-    <div class="tags-section mt-3" *ngIf="selectedGame?.gameTags?.length">
-      <h4>Tags:</h4>
-      <span class="badge badge-primary mr-2" *ngFor="let tag of selectedGame.gameTags">{{ tag.tagId }}</span>
-    </div>
-
-    <!-- DLC Section -->
-    <div class="dlc-section mt-4" *ngIf="selectedGame?.dlcs?.length">
-      <h4>DLCs:</h4>
-      <div class="dlc-items">
-        <div *ngFor="let dlc of selectedGame.dlcs">
-          <!-- Uncomment if there's an imageUrl for DLCs -->
-          <!-- <img [src]="dlc.imageUrl" alt="{{ dlc.name }}" class="img-thumbnail mb-2"> -->
-          <h5>{{ dlc.name }}</h5>
-          <p>{{ dlc.description }}</p>
-          <p>Release Date: {{ dlc.releaseDate }}</p>
-          <button class="btn btn-outline-primary mb-2">Add DLC to Cart</button>
+  <!-- DLCs Section -->
+  <div class="dlcs-section vh-section">
+    <h2>DLCs</h2>
+    <div class="row">
+      <!-- Loop through the DLCs and display them here -->
+      <div class="col-md-4 dlc-item" *ngFor="let dlc of selectedGame.dlcs">
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5>{{ dlc.name }}</h5>
+            <p>{{ dlc.description }}</p>
+            <p><strong>Price:</strong> {{ dlc.price | currency:'USD' }}</p>
+            <button class="btn btn-sm btn-outline-primary">Add to Cart</button>
+          </div>
         </div>
       </div>
     </div>
-  </aside>
+  </div>
 
-  <!-- Buy Button -->
-  <footer class="footer-section mt-4">
-      <button class="btn btn-primary buy-btn">Buy Now</button>
-  </footer>
+<!-- Game Images Gallery -->
+<div class="game-images-gallery mt-3 mb-4">
+  <h2>Game Images</h2>
+  <div class="row">
+      <div class="col-md-4" *ngFor="let image of selectedGame.images">
+          <img [src]="image" alt="Game Image" class="img-fluid mb-3">
+      </div>
+  </div>
+</div>
+
+   
+
+
+  <!-- Editions Section -->
+  <div class="editions-section vh-section">
+    <h2>Editions</h2>
+    <div class="row">
+      <!-- Loop through the Editions and display them here -->
+      <div class="col-md-4 edition-item" *ngFor="let edition of selectedGame.editions">
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5>{{ edition.name }}</h5>
+            
+            <p><strong>Price:</strong> {{ edition.price | currency:'USD' }}</p>
+            <button class="btn btn-sm btn-outline-primary">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

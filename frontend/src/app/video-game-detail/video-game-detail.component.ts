@@ -89,6 +89,7 @@ interface Game {
 export class VideoGameDetailComponent implements OnInit {
   selectedGame: Game | undefined;
   errorMessage: string | undefined;
+  gameData: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -105,6 +106,7 @@ export class VideoGameDetailComponent implements OnInit {
 
       try {
           const { data } = await axios.get(`http://localhost:5052/api/Game/${gameId}`);
+          console.log(data)
           if (data) {
               this.selectedGame = {
                   ...data, 
@@ -126,6 +128,15 @@ export class VideoGameDetailComponent implements OnInit {
   getSafeUrl(videoId: string): SafeResourceUrl {
     return this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${videoId}`);
 }
+
+onBuyHover() {
+  // Add logic to change the button's appearance on hover (perhaps increase size slightly or change color).
+}
+
+onBuyLeave() {
+  // Revert the button's appearance when the mouse is no longer hovering over it.
+}
+
 
 
 }

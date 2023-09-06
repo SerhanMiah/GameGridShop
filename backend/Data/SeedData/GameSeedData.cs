@@ -54,7 +54,7 @@ namespace backend.Data.SeedData
                     GamePlatform = Platform.PC,
                     Developer = "CD Projekt Red",
                     Publisher = "CD Projekt",
-                    CoverImageUrl = "https://example.com/witcher_3_cover.jpg",
+                    CoverImageUrl = "https://res.cloudinary.com/danedskby/image/upload/v1694016203/TimelineCovers.pro_video-game-the-witcher-3-wild-hunt-the-score-facebook-cover_sfined.jpg",
                     YoutubeTrailerId = "c0i88t0Kacs",
                     WebsiteUrl = "https://www.playstation.com/en-gb/games/the-witcher-3-wild-hunt/",
                     Rating = GameRating.Mature,
@@ -67,8 +67,8 @@ namespace backend.Data.SeedData
             // Seed data for GameImages
             var witcherGameImages = new List<GameImage>
             {
-                new GameImage { ImageId = 1, GameId = 1, ImageUrl = "https://example.com/witcher_3_image1.jpg" },
-                new GameImage { ImageId = 2, GameId = 1, ImageUrl = "https://example.com/witcher_3_image2.jpg" },
+                new GameImage { ImageId = 1, GameId = 1, ImageUrl = "https://res.cloudinary.com/danedskby/image/upload/v1694016203/TimelineCovers.pro_video-game-the-witcher-3-wild-hunt-the-score-facebook-cover_sfined.jpg" },
+                new GameImage { ImageId = 2, GameId = 1, ImageUrl = "https://res.cloudinary.com/danedskby/image/upload/v1694016203/TimelineCovers.pro_video-game-the-witcher-3-wild-hunt-the-score-facebook-cover_sfined.jpg" },
                 // ... Add more game images here...
             };
 

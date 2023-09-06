@@ -10,7 +10,10 @@ import { VideoGameListComponent } from './video-game-list/video-game-list.compon
 import { VideoGameDetailComponent } from './video-game-detail/video-game-detail.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { CarouselModule } from 'ngx-bootstrap/carousel'; // Carousel Module
+import { CarouselModule } from 'ngx-bootstrap/carousel'; 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SafePipe } from 'src/app/safe.pipe';
+
 
 @NgModule({
   declarations: [
@@ -22,8 +25,10 @@ import { CarouselModule } from 'ngx-bootstrap/carousel'; // Carousel Module
     VideoGameListComponent,
     VideoGameDetailComponent,
     NavigationBarComponent,
+    SafePipe
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
     NgbModule,
