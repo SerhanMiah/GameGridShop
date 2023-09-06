@@ -1,141 +1,96 @@
-/* src/app/home/home.component.css */
-
-/* Overall Page Styling */
+/* Global Styles */
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #f7f7f7;
 }
 
-/* Header Styling */
-.header-section {
-  background-color: #1a1a1a;
-  color: #ffffff;
-  padding: 10px 0;
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
 }
 
-.header-section nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
-}
-
-.nav-links ul {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: #ffffff;
-  transition: color 0.3s ease;
-}
-
-.nav-links a:hover {
-  color: #3498db;
-}
-
-/* Hero Section Styling */
+/* Hero Section */
 .hero-section {
-  /* background-image: url('hero-background.jpg'); */
-  background-size: cover;
-  background-position: center;
-  color: #ffffff;
-  text-align: center;
-  padding: 150px 0;
+    /* background-image: url('path-to-hero-image.jpg'); Replace with your desired background image path */
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.hero-content {
-  max-width: 800px;
-  margin: 0 auto;
+.hero-section h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
 }
 
-.explore-button {
-  background-color: #3498db;
-  color: #ffffff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
+.hero-section p.lead {
+    font-size: 1.25rem;
+    margin-bottom: 20px;
 }
 
-.explore-button:hover {
-  background-color: #2980b9;
-}
-
-/* Games Section Styling */
+/* Featured Games Section */
 .games-section {
-  background-color: #f7f7f7;
-  padding: 40px 0;
+    background-color: #fff;
 }
 
-.games-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-  justify-content: center;
+.game-card img {
+    border-radius: 5px;
+    transition: transform 0.3s;
 }
 
-/* Game Card Styling */
-.game-card {
-  background-color: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease;
+.game-card img:hover {
+    transform: scale(1.05);
 }
 
-.game-card:hover {
-  transform: translateY(-5px);
+.game-card h3 {
+    margin-top: 10px;
 }
 
-/* Footer Styling */
+.buy-button {
+    background-color: #f57224;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    padding: 8px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.buy-button:hover {
+    background-color: #d86018;
+}
+
+/* Footer */
 .footer-section {
-  background-color: #1a1a1a;
-  color: #ffffff;
-  padding: 40px 0;
-}
-
-.footer-content {
+  background-color: #333;
+  padding: 20px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  justify-content: center;
 }
 
 .footer-logo img {
   max-width: 150px;
-  height: auto;
+  margin-bottom: 15px;  /* Added some margin for spacing */
 }
 
-.footer-links ul {
-  list-style: none;
+.footer-links,
+.social-links {
   display: flex;
-  gap: 20px;
+  gap: 20px;  /* Space between links */
+  margin: 5px 0;  /* Space between link groups */
 }
 
-.footer-links a {
-  text-decoration: none;
-  color: #ffffff;
-  transition: color 0.3s ease;
-}
-
-.footer-links a:hover {
-  color: #3498db;
-}
-
+.footer-links a,
 .social-links a {
-  margin: 0 10px;
-  transition: transform 0.3s ease;
+  color: #b0b0b0;
+  transition: color 0.3s;
 }
 
+.footer-links a:hover,
 .social-links a:hover {
-  transform: scale(1.1);
+  color: #fff;
 }

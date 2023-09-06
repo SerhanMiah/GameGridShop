@@ -1,8 +1,18 @@
-<h2>Video Game List</h2>
-<ul>
-  <li *ngFor="let game of games" (click)="onSelect(game)">
-    {{ game.name }}
-
-    
-  </li>
-</ul>
+<div class="container mt-5">
+    <h2 class="mb-4">Video Game List</h2>
+    <div class="row">
+        <div class="col-md-4 mb-4" *ngFor="let game of games">
+            <div class="card">
+                <img [src]="game.coverImageUrl" class="card-img-top" alt="{{ game.title }}" style="height: 300px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ game.title }}</h5>
+                    <p class="card-text">{{ game.description }}</p>
+                    <p class="card-text"><strong>Price:</strong> £{{ game.price }}</p>
+                    <!-- Router Link for game details -->
+                    <a [routerLink]="['/game', game.id]" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  

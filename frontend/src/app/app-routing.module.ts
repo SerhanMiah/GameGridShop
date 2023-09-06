@@ -15,8 +15,8 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'video-game-detail', component: VideoGameDetailComponent},
-  { path: 'video-game-list', component: VideoGameListComponent},
+  { path: 'game/:id', component: VideoGameDetailComponent },
+  { path: 'games', component: VideoGameListComponent},
 
 
 ];

@@ -12,6 +12,7 @@ import { RegisterComponent } from './register/register.component';
 import { VideoGameListComponent } from './video-game-list/video-game-list.component';
 import { VideoGameDetailComponent } from './video-game-detail/video-game-detail.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -28,7 +29,8 @@ import { NavigationBarComponent } from './navigation-bar/navigation-bar.componen
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
